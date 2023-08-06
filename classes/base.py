@@ -4,7 +4,11 @@ from abc import ABC, abstractmethod
 class BaseAPIClass(ABC):
     
     @abstractmethod
-    def get_vacancies(self):
+    def make_request():
+        pass
+
+    @abstractmethod
+    def get_data():
         pass
 
 
@@ -12,14 +16,12 @@ class BaseAPIClass(ABC):
 class BaseJSONClass(ABC):
     
     @abstractmethod
-    def add_vacancy(vacancy):
+    def add_vacancy():
         pass
 
-    @abstractmethod
-    def get_vacancies_by_salary(salary):
-        pass
 
     @abstractmethod
-    def delete_vacancy(vacancy):
+    def delete_vacancy():
         pass
+
 

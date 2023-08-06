@@ -1,8 +1,7 @@
-
-
 class Vacancy:
 
-    def __init__(self, title, link, salary_from, salary_to, salary_currency, requirements):
+    def __init__(self, id, title, link, salary_from, salary_to, salary_currency, requirements):
+        self.id = id
         self.title = title
         self.link = link
         self.salary_from = salary_from
@@ -12,5 +11,6 @@ class Vacancy:
 
         
     def __gt__(self, other):
-        '''Сравнение больше по зарплате'''
+        '''Сравнение больше по ЗП(от)'''
+
         return self.salary_from > other.salary_from
