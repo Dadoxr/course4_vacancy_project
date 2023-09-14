@@ -1,4 +1,6 @@
 import os, sys, json
+
+from classes.dbsaver import DBSaver
 sys.path.append(os.getcwd())
 
 from classes.currency import Currency
@@ -50,7 +52,7 @@ def add_vanancies_to_json(text: str) -> None:
     # Создание экземпляра класса для работы с API сайтов с вакансиями
     hh_api = HeadHunterAPI()
     superjob_api = SuperJobAPI()
-    json_saver = JSONSaver()
+    db_saver = DBSaver()
 
     # Получение вакансий с разных платформ
     hh_vacancies_list = hh_api.get_data(text)
@@ -59,9 +61,7 @@ def add_vanancies_to_json(text: str) -> None:
     # Получаем данные всех валют
     currency_cite_data = Currency.make_request()
     
-    vacancy_list = []
-
-    # Формитирования вакансий HH.ru для дабавление в JSON
+    # Формитирования вакансий HH.ru для добавление в DB
     for vacancy in hh_vacancies_list:
         id = vacancy.get('id',0)
         title = vacancy.get('name','Нет названия')
@@ -91,9 +91,9 @@ def add_vanancies_to_json(text: str) -> None:
                     'salary_to': int(vacancy.salary_to),
                     'salary_currency': str(vacancy.salary_currency),
                     'requirements': str(vacancy.requirements)}
-        vacancy_list.append(new_item)
+        Vacancy.vacancy_list.append(new_item)
 
-    # Формитирования вакансий superjob для дабавление в JSON
+    # Формитирования вакансий superjob для дабавление в DB
     for vacancy in superjob_vacancies_list:
         id = vacancy.get('id', 0)
         title = vacancy.get('profession', 'Нет названия')
@@ -123,7 +123,7 @@ def add_vanancies_to_json(text: str) -> None:
                     'salary_to': int(vacancy.salary_to),
                     'salary_currency': str(vacancy.salary_currency),
                     'requirements': str(vacancy.requirements)}
-        vacancy_list.append(new_item)
+        Vacancy.vacancy_list.append(new_item)
 
     #Добавление отформатированных вакансий в JSON
     json_saver.add_vacancy(vacancy_list)

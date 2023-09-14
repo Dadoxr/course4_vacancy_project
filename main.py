@@ -1,22 +1,12 @@
 import os
 from src.utils import *
-from src.settings import VACANCY_FILENAME
-from classes.jsonsaver import JSONSaver
 
 
 def main():
 
     # Создание или обновление базы вакансий
-    if os.path.exists(VACANCY_FILENAME):
-        is_need_update = input("Нужно обновить вакансии? 1 - да, оставное - нет: ")
-        if is_need_update == '1':
-            text = input('Введи ключевые слова для парсинга вакансий: ')
-
-            os.remove(VACANCY_FILENAME)
-            renew_vacancy(text)
-    else:
-        text = input('Введи ключевые слова для парсинга вакансий: ')
-        renew_vacancy(text)
+    text = input('Введи ключевые слова для парсинга вакансий: ')
+    renew_vacancy(text)
 
     # Запрос пользователю на фильтр вакансий
     top_n = input("Введите количество вакансий для вывода в топ N: ")

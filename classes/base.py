@@ -13,7 +13,7 @@ class BaseAPIClass(ABC):
 
 
 
-class BaseJSONClass(ABC):
+class BaseSaveClass(ABC):
     
     @abstractmethod
     def add_vacancy():
