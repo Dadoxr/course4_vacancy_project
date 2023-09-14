@@ -86,6 +86,18 @@ class DBSaver(BaseSaveClass):
         with self.conn.cursor() as cur:
             cur.execute(query)
             result = cur.fetchall()
+        
+        if result:    
+            result = [
+                {
+                    'emp_id': i[0],
+                    'name': i[1], 
+                    'link': i[2], 
+                    'description': i[3], 
+                    'count_vac': i[4]
+                } for i in result
+            ] 
+        
         return result
 
 
@@ -103,6 +115,18 @@ class DBSaver(BaseSaveClass):
         with self.conn.cursor() as cur:
             cur.execute(query)
             result = cur.fetchall()
+        
+        if result:    
+            result = [
+                {
+                    'title': i[0], 
+                    'emp_name': i[1], 
+                    'salary_from': i[2], 
+                    'salary_to': i[3], 
+                    'salary_currency': i[4], 
+                    'vac_link':  i[5]
+                } for i in result] 
+       
         return result
 
 
@@ -125,7 +149,7 @@ class DBSaver(BaseSaveClass):
         '''получает список всех вакансий, у которых зарплата выше средней по всем вакансиям.'''
         
         query = f'''
-            SELECT * 
+            SELECT id, title, employer_id, link, salary_from, salary_to, salary_currency, requirements  
             FROM {DB_VAC_TABLE_NAME} WHERE salary_from >
                 (SELECT AVG(salary_to) average_salary
                  FROM {DB_VAC_TABLE_NAME})
@@ -134,6 +158,20 @@ class DBSaver(BaseSaveClass):
         with self.conn.cursor() as cur:
             cur.execute(query)
             result = cur.fetchall()
+
+        if result:    
+            result = [
+                {
+                    'id': i[0], 
+                    'title': i[1], 
+                    'employer_id': i[2], 
+                    'link': i[3], 
+                    'salary_from': i[4], 
+                    'salary_to':  i[5],
+                    'salary_currency':  i[6],
+                    'requirements':  i[7]
+                } for i in result] 
+            
         return result
 
 
@@ -157,4 +195,18 @@ class DBSaver(BaseSaveClass):
         with self.conn.cursor() as cur:
             cur.execute(query)
             result = cur.fetchall()
+        
+        if result:    
+            result = [
+                {
+                    'id': i[0], 
+                    'title': i[1], 
+                    'employer_id': i[2], 
+                    'link': i[3], 
+                    'salary_from': i[4], 
+                    'salary_to':  i[5],
+                    'salary_currency':  i[6],
+                    'requirements':  i[7]
+                } for i in result] 
+
         return result

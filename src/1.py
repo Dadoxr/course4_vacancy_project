@@ -1,5 +1,7 @@
-a = [(1,2,3),(3,4,5),(4,5,6)]
+a = [{'1':'2','2':'3'},{'32':'4', '33':'9'},{'42':'5', '43':'5'}]
 
-for aa in a:
-    print(aa, end='')
-    print('.', end='')
+text = '\n'
+for i in a:
+    for key, value in i.items(): 
+        text += value
+print(text)

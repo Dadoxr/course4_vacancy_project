@@ -72,8 +72,12 @@ CTRL+C - закончить
 
         if results:
             for result in results:
-                print(result)
-                print()
+                text = '\n'
+                for key, value in result.items():
+                    text += f'{key} - {value}'
+                    text += '\n'
+                print(text)
+
         continue
 
 
