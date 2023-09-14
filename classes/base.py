@@ -7,21 +7,17 @@ class BaseAPIClass(ABC):
     def make_request():
         pass
 
-    @abstractmethod
-    def get_data():
-        pass
-
 
 
 class BaseSaveClass(ABC):
     
     @abstractmethod
-    def add_vacancy():
+    def add():
         pass
 
 
     @abstractmethod
-    def delete_vacancy():
+    def delete():
         pass
 
 
