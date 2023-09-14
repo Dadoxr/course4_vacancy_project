@@ -50,7 +50,7 @@ DB_PASSWD
 
 
 # Описание функций main.py
-```renew_vacancy(text, employers_id)``````
+```renew_vacancy(text, employers_id)```
 
 - Главная функция, которая выполняет следующие действия:
     - Получает данные о вакансиях с HH.ru.
